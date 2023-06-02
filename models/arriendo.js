@@ -3,6 +3,7 @@ const {Schema, model}=require('mongoose')
 const ArriendoSchema=Schema({
     direccion: {
         type: String,
+        unique:true,
         required:[true, 'la direccion es obligatoria']
     },
     TipoMueble:{
@@ -18,7 +19,7 @@ const ArriendoSchema=Schema({
             validator: function(valor){
                 return valor>=800000 && valor<=4000000
             },
-            mensaje: 'EL valor debe estar entre 800.000 y 4.000.000'
+            message: 'EL valor debe estar entre 800.000 y 4.000.000'
 
         }
     },

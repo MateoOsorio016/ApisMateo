@@ -7,6 +7,7 @@ const PersonaSchema=Schema({
         required:[true, "el documento es obligatorio"]
     },
     Documento:{
+        unique: true,
         type:Number,
         required:[true, 'el documento es obligatorio']
     },
@@ -14,6 +15,11 @@ const PersonaSchema=Schema({
         type:String,
         required:[true, 'el nombre es obligatorio']
 
+    },
+    genero:{
+        type:String,
+        enum:['Masculino', 'Femenino'],
+        required:[true, 'El genero es obligatorio']
     },
     fechaNacimiento:{
         type:Date,
@@ -23,7 +29,7 @@ const PersonaSchema=Schema({
                 let fecha= new Date()
                 return fechaNacimiento<fecha
             },
-            mensaje:'La fecha de nacimiento es mayor a la actual'
+            message:'La fecha de nacimiento es mayor a la actual'
 
         }
     },

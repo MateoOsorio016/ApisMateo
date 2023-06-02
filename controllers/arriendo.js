@@ -29,8 +29,42 @@ const postArriendo=async(req, res=response)=>{
         mensaje
     })
 }
+const putArriendo=async(req, res=response)=>{
+    const body= req.query
+
+    let mensaje=''
+    try {
+    await Arriendo.findOneAndUpdate({direccion:body.direccion}, {TipoMueble: body.TipoMueble, Valor: body.Valor, Ciudad: body.Ciudad})
+        mensaje='arriendo Actualizado'
+
+    } catch (error) {
+        mensaje='Error'
+        
+    }
+    res.json({
+        mensaje
+    })
+}
+const deleteArriendo=async(req, res=response)=>{
+    const body= req.query
+
+    let mensaje=''
+    try {
+    await Arriendo.findOneAndDelete({direccion:body.direccion}, {TipoMueble: body.TipoMueble, Valor: body.Valor, Ciudad: body.Ciudad})
+        mensaje='arriendo Borrado'
+
+    } catch (error) {
+        mensaje='Error'
+        
+    }
+    res.json({
+        mensaje
+    })
+}
 module.exports={
     getArriendo,
-    postArriendo
+    postArriendo,
+    putArriendo,
+    deleteArriendo
 
 }

@@ -51,7 +51,39 @@ const postPersona=async(req, res=response)=>{
         mensaje
     })
 }
+const putPersona=async(req, res=response)=>{
+  const body= req.query
+  let mensaje=''
+  try {
+      await Persona.findOneAndUpdate({Documento:body.Documento}, {Nombre:body.Nombre, fechaNacimiento:body.fechaNacimiento, Numero:body.Numero})
+      mensaje='Persona Actualizada'
+  } catch (error) {
+      mensaje='Error'
+      
+  }
+  res.json({
+      mensaje
+  })
+}
+const deletePersona=async(req, res=response)=>{
+  const body= req.query
+  let mensaje=''
+  try {
+      await Persona.findOneAndDelete({Documento:body.Documento}, {Nombre:body.Nombre, fechaNacimiento:body.fechaNacimiento, Numero:body.Numero})
+      mensaje='Persona Borrada'
+  } catch (error) {
+      mensaje='Error'
+      
+  }
+  res.json({
+      mensaje
+  })
+}
+
 module.exports={
     getPersona,
-    postPersona
+    postPersona,
+    putPersona,
+    deletePersona
+    
 }
